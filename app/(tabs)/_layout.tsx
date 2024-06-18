@@ -24,9 +24,9 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="welcome"
+        name="overview"
         options={{
-          title: "Welcome",
+          title: "Overview",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
