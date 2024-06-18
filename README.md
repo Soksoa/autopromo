@@ -1,69 +1,52 @@
-# Expo NativeWind Template
+# Autopromo
 
-## An Opinionated Way to Build a React Native App
+Autopromo is a simple yet powerful React Native application designed for musicians and artists to create, edit, and share short promotional videos effortlessly. Leveraging advanced AI technology, Autopromo assists users in crafting high-quality musical content, perfect for sharing on social media platforms and other promotional channels.
 
-The **Expo NativeWind Template** is designed to provide you with a fast and efficient starting point for building React Native applications. This template follows a set of opinions to streamline your development process and ensure consistency across mobile and web platforms.
+## Features
 
-### Features
+- **Easy Recording:** Record high-quality short videos with intuitive controls designed for musicians.
+- **AI Assistance:** Create your videos using AI-interpreted music peaks.
+- **Editing Tools:** Simple and effective video editing tools tailored to create engaging promotional content.
+- **Social Media Integration:** Seamlessly share your videos on popular social media platforms directly from the app.
+- **User-Friendly Interface:** A clean and straightforward interface that makes video creation accessible to everyone, regardless of technical skill level.
+- **Cross-Platform Compatibility:** Built with React Native Expo, Autopromo is available on both iOS and Android devices.
 
-- **Tailwind CSS for Styling**: Tailwind CSS is a highly customizable and utility-first CSS framework. With this template, you can easily style your components using Tailwind classes, making your UI development faster and more consistent.
+## Getting Started
 
-- **Expo-Router for Navigation**: Expo-Router simplifies navigation in your React Native app. It provides a straightforward way to manage your app's routing, ensuring smooth transitions between screens.
+To get started with Autopromo, follow these steps:
 
-- **Mobile and Web Compatibility**: This template is optimized for both mobile and web platforms. You can develop and test your app on multiple devices, including web browsers, without major modifications.
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/yourusername/autopromo.git
+   cd autopromo
 
-### Getting Started
+2. **Install dependencies:**
+   ```sh
+   npm install
 
-To create a new project using this template, follow these steps:
+3. **Run the app:**
+   ```sh
+   npm run start
 
-1. Open your terminal.
+4. **Open the app in your emulator:**
+   ```sh
+   npm run ios # for iOS
+   npm run android # for Android
 
-2. Run the following command to create a new Expo project based on this template:
+## Contributing
 
-   ```bash
-   expo init my-app --template @sign365/expo-nativewind-template
-   ```
+We welcome contributions from the community! If you'd like to contribute to Autopromo, please follow these steps:
 
-3. Navigate to your project directory:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes and push the branch to your fork.
+4. Submit a pull request with a detailed description of your changes.
 
-   ```bash
-   cd my-app
-   ```
+## License
 
-4. Start your development server:
+Autopromo is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-   ```bash
-   expo start
-   ```
+## Contact
 
-### Project Structure
+For questions or feedback, please reach out my discord "soksoa".
 
-The project structure follows a typical React Native layout, with additional configuration for Tailwind CSS and Expo-Router. You can find the core project files and directories in the `src` folder.
-
-### Customization
-
-Feel free to customize the template to suit your specific project requirements. You can modify styling, add components, and expand your app's functionality as needed. The included Tailwind CSS setup and Expo-Router integration provide a strong foundation for building a polished mobile and web application.
-
-### Documentation
-
-For more information on using Tailwind CSS, Expo-Router, or Expo in general, please refer to their official documentation:
-
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Expo Documentation](https://docs.expo.dev/)
-- [Expo-Router Documentation](https://reactrouter.com/native)
-
-### Feedback and Contributions
-
-We welcome feedback and contributions from the community. If you have suggestions for improvements or run into any issues with this template, please don't hesitate to open an issue or submit a pull request on our GitHub repository.
-
-### Sponsors
-- [Sign365](www.sign365.com.au)
-- [XAM Consulting](https://xam.com.au/)
-
-Anyone who wishes to sponsor this package. Just let me know and I will add you on
-
-### License
-
-This template is open-source and available under the [MIT License](LICENSE). You are free to use, modify, and distribute it as per the terms of the license.
-
-Happy coding with Expo NativeWind Template!
