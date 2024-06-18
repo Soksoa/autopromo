@@ -24,9 +24,9 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="welcome"
         options={{
-          title: "Template App",
+          title: "Welcome",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -45,9 +45,23 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="projects"
         options={{
-          title: "Check Us Out",
+          title: "Projects",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="camera"
+        options={{
+          title: "Camera",
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="timeline"
+        options={{
+          title: "Timeline",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
