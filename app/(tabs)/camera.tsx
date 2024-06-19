@@ -1,6 +1,6 @@
-import { StyleSheet, Button } from "react-native";
+import { StyleSheet, Button, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import { useCameraPermissions } from "expo-camera";
+import { CameraView, useCameraPermissions } from "expo-camera";
 
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
@@ -13,20 +13,7 @@ export default function CameraTabScreen() {
   if (!permission) {
     // Camera permissions are still loading.
     return (
-      <View style={styles.container}>
-        <Text
-          style={styles.title}
-          className="text-purple-500 text-sm font-extrabold"
-        >
-          Camera
-        </Text>
-        <View
-          style={styles.separator}
-          lightColor="#eee"
-          darkColor="rgba(255,255,255,0.1)"
-        />
-        <EditScreenInfo path="app/(tabs)/two.tsx" />
-      </View>
+      <View />
     );
   }
 
@@ -40,6 +27,20 @@ export default function CameraTabScreen() {
     );
   }
 
+  function toggleCameraFacing() {
+    setFacing(current => (current === 'back' ? 'front' : 'back'));
+  }
+
+  return (
+    <CameraView style={styles.camera} facing={facing}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
+            <Text style={styles.text}>Flip Camera</Text>
+          </TouchableOpacity>
+        </View>
+      </CameraView>
+  );
+
   
 }
 
@@ -49,6 +50,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
+  camera: {
+    flex: 1,
+  },
+
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    margin: 64,
+  },
+
+  button: {
+    flex: 1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+  },
+
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+
   title: {
     fontSize: 20,
     fontWeight: "bold",
