@@ -1,7 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Button } from "react-native";
 
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
+
+import { createFolder } from "@/utils/createFolder";
 
 export default function ProjectsTabScreen() {
   return (
@@ -17,7 +19,7 @@ export default function ProjectsTabScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Button onPress={createFolder} title="Create folder!" />
     </View>
   );
 }
