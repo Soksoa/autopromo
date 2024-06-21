@@ -1,52 +1,59 @@
-import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet, TouchableOpacity, Button } from "react-native";
-import { Text, View } from "../components/Themed";
-import { createProject } from "@/utils/createProject";
-import PagerView from 'react-native-pager-view';
-import CreateProjectPage from "@/components/CreateProjectPage";
-import ProjectInformationForm from "@/components/ProjectInformationForm";
+import React, { useState } from 'react';
+import {Text, View} from '@/components/Themed'
+import { StyleSheet, TextInput, Button} from 'react-native';
+import { createProject } from '@/utils/createProject';
 
 export default function CreateProjectScreen() {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
+  const handleCreateProject = async () => {
+    if (name.trim() === '') {
+      Alert.alert('Validation Error', 'Project name is required.');
+      return;
+    }
+
+    await createProject({ name, description });
+  };
 
   return (
     <View style={styles.container}>
-      <PagerView style={styles.pagerView} initialPage={0}>
-        <CreateProjectPage stepTitle={"Create new project"} component={ProjectInformationForm} />
-        <View style={styles.page} key="2">
-          <Text>Second page</Text>
-        </View>
-      </PagerView>
-      
-      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
+      <Text style={styles.title}>Create New Project</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Project Name"
+        value={name}
+        onChangeText={setName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Project Description"
+        value={description}
+        onChangeText={setDescription}
+      />
+      <Button title="Create project" onPress={handleCreateProject} />
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  pagerView: {
-    height: "100%",
-    width: "100%",
-  },
-
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-  page: {
+    padding: 16,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 16,
+  },
+  input: {
+    width: '100%',
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 16,
+    borderRadius: 4,
+    color: 'white'
   },
 });

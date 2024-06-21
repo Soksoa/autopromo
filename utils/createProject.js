@@ -7,7 +7,7 @@ export const createProject = async ({ name, audio }) => {
     const projectDirectory = `${FileSystem.documentDirectory}${projectName}/`;
 
     // Define the structure (you can customize this as needed)
-    const folders = ['Recordings', 'Audio'];
+    const folders = ['Clips', 'Audio'];
 
     // Create the project directory
     await FileSystem.makeDirectoryAsync(projectDirectory, { intermediates: true });
