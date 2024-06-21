@@ -1,37 +1,24 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import {Text, View} from '@/components/Themed'
 import { StyleSheet, TextInput, Button} from 'react-native';
-import { createProject } from '@/utils/createProject';
+import PagerView from 'react-native-pager-view'
+import PropertiesForm from '@/components/PropertiesForm';
+import UploadSong from '@/components/UploadSong';
 
 export default function CreateProjectScreen() {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-
-  const handleCreateProject = async () => {
-    if (name.trim() === '') {
-      Alert.alert('Validation Error', 'Project name is required.');
-      return;
-    }
-
-    await createProject({ name, description });
-  };
+  const pagerRef = useRef('null')
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create New Project</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Project Name"
-        value={name}
-        onChangeText={setName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Project Description"
-        value={description}
-        onChangeText={setDescription}
-      />
-      <Button title="Create project" onPress={handleCreateProject} />
+      <PagerView 
+          ref={pagerRef} 
+          style={styles.pagerView}
+          initialPage={0}
+          scrollEnabled={false}>
+            
+        <PropertiesForm key="1" pagerRef={pagerRef} />
+        <UploadSong key="2" />
+      </PagerView>
     </View>
   );
 }
@@ -43,6 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  pagerView: {
+    width: "100%",
+    height: "100%",
+  },
+
   title: {
     fontSize: 24,
     marginBottom: 16,
