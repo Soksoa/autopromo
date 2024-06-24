@@ -1,24 +1,45 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {Text, View} from '@/components/Themed'
 import { StyleSheet, TextInput, Button} from 'react-native';
 import PagerView from 'react-native-pager-view'
-import PropertiesForm from '@/components/PropertiesForm';
-import UploadSong from '@/components/UploadSong';
+import { createProject } from '@/utils/createProject';
+
+
 
 export default function CreateProjectScreen() {
-  const pagerRef = useRef('null')
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [bpm, setBpm] = useState('');
+  const [song, setSong] = useState('')
 
   return (
-    <View style={styles.container}>
-      <PagerView 
-          ref={pagerRef} 
-          style={styles.pagerView}
-          initialPage={0}
-          scrollEnabled={false}>
-            
-        <PropertiesForm key="1" pagerRef={pagerRef} />
-        <UploadSong key="2" />
-      </PagerView>
+    <View>
+      <Text style={styles.title}>Create New Project</Text>
+    <TextInput
+      style={styles.input}
+      placeholder="Project Name"
+      value={name}  
+      onChangeText={setName}
+    />
+    <TextInput
+      style={styles.input}
+      placeholder="Project Description"
+      value={description}
+      onChangeText={setDescription}
+    />
+
+  <TextInput
+      style={styles.input}
+      placeholder="Beats per minute"
+      value={name}  
+      onChangeText={setName}
+      inputMode='numeric'
+    />
+      <Button title="Upload song" />
+      <Text>Song selected:</Text>
+      <View style={styles.separator} />
+      <Button title="Create project" />
+  
     </View>
   );
 }
@@ -47,5 +68,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 4,
     color: 'white'
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
   },
 });

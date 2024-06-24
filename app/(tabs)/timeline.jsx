@@ -2,22 +2,27 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
+import Timeline from "@/components/Timeline";
 
 export default function TimelineTabScreen() {
+  const duration = 1;
+  const bpm = 120;
+  const clips = [
+
+    clip_1 = {
+      start: 0,
+      end: 0,
+      clip: "path/to/clip"
+    }
+    // Add more clips as needed
+  ];
+  
+
+
   return (
     <View style={styles.container}>
-      <Text
-        style={styles.title}
-        className="text-purple-500 text-sm font-extrabold"
-      >
-        Timeline
-      </Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <View style={styles.container}></View>
+      <Timeline bpm={120} />
     </View>
   );
 }
@@ -26,7 +31,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    backgroundColor:"red"
   },
   title: {
     fontSize: 20,
