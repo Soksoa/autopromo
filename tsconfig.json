@@ -30,5 +30,5 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "../app.d.ts"
-, "utils/listFolders.js", "app/(tabs)/timeline.jsx"  ]
+, "utils/listFolders.js", "app/(tabs)/timeline.jsx", "app/(tabs)/camera.jsx", "app/(tabs)/camera.jsx"  ]
 }
