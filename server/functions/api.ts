@@ -17,14 +17,17 @@ function parseMultipartForm(event): Promise<Fields> {
 
         bb.on('file', (name, file, info) => {
             const { filename, mimeType } = info;
+            let buffer = Buffer.alloc(0);
 
             file.on('data', (data) => {
-                if (!fields[name]) fields[name] = [];
+                buffer = Buffer.concat([buffer, data]);
+            });
 
-                fields[name].push({
+            file.on('end', () => {
+                fields.audio.push({
                     filename,
                     type: mimeType,
-                    content: data,
+                    content: buffer,
                 });
             });
         });
@@ -34,6 +37,16 @@ function parseMultipartForm(event): Promise<Fields> {
         });
 
         bb.end(Buffer.from(event.body, 'base64'));
+    });
+}
+
+function bufferToAudioBuffer(audioContext, buffer) {
+    return new Promise((resolve, reject) => {
+        audioContext.decodeAudioData(buffer, (audioBuffer) => {
+            resolve(audioBuffer);
+        }, (error) => {
+            reject(error);
+        });
     });
 }
 
@@ -55,15 +68,22 @@ export const handler: Handler = async (event) => {
 
             console.log('fields is: ', fields);
 
-            const buffer = fields.file[0].content;
+            const buffer = fields.audio[0].content;
+            const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
 
-            const tempo = await analyze(buffer);
+            const audioContext = new (globalThis.AudioContext || globalThis.webkitAudioContext)();
+            const audioBuffer = await bufferToAudioBuffer(audioContext, arrayBuffer);
+
+            // Now `audioBuffer` is a valid `AudioBuffer`
+            console.log('AudioBuffer:', audioBuffer);
+
+            const tempo = await analyze(audioBuffer.getChannelData(0)); // Get channel data for tempo analysis
 
             console.log('Tempo:', tempo);
 
             return {
                 statusCode: 200,
-                body: JSON.stringify({ message: 'Audio processed successfully!' }), // Return JSON response
+                body: JSON.stringify({ message: 'Audio processed successfully!', tempo }), // Return JSON response
             };
         } catch (error) {
             return {
