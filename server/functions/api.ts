@@ -1,5 +1,6 @@
 import busboy from 'busboy';
 import { Handler } from '@netlify/functions';
+import { analyze } from 'web-audio-beat-detector';
 
 type Fields = {
     audio: {
@@ -55,7 +56,7 @@ export const handler: Handler = async (event) => {
             console.log('fields is: ', fields);
             console.log('audio is: ', fields.audio);
 
-            // Process audio data here...
+            console.log('buffer is', fields.file.content)
 
             return {
                 statusCode: 200,
