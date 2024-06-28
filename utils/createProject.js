@@ -1,10 +1,14 @@
 import * as FileSystem from 'expo-file-system';
 import { Alert } from 'react-native';
 
-export const createProject = async ({ name, audio }) => {
+export const createProject = async ({ name, description, bpm, audio, duration }) => {
   try {
     const projectName = name; // Replace with user input or generated name
+    const projectDescription = description;
+    const projectBpm = bpm;
     const projectDirectory = `${FileSystem.documentDirectory}${projectName}/`;
+    const projectDuration = duration;
+    
 
     // Define the structure (you can customize this as needed)
     const folders = ['Clips', 'Audio'];
@@ -20,7 +24,11 @@ export const createProject = async ({ name, audio }) => {
     // Define project data
     const projectData = {
       name: projectName,
+      description: projectDescription,
+      bpm: projectBpm,
+      duration: projectDuration,
       audioFiles: audio || [],
+      clips: [],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
