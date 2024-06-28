@@ -55,19 +55,11 @@ export const handler: Handler = async (event) => {
 
             console.log('fields is: ', fields);
 
-            const buffer = fields.file[0].content
+            const buffer = fields.file[0].content;
 
-            analyze(buffer).then((tempo) => {
+            const tempo = await analyze(buffer);
 
-                console.log(tempo)
-
-            }).catch((err) => {
-
-                console.error(err)
-
-            });
-
-            
+            console.log('Tempo:', tempo);
 
             return {
                 statusCode: 200,
