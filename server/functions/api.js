@@ -6,7 +6,7 @@ const app = express();
 
 app.get('/.netlify/functions/api', (req, res) => {
     return res.json({
-        messages: "hello world!"
+        messages: "Api is working!"
     })
 })
 
