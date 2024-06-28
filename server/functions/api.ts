@@ -41,14 +41,14 @@ export const handler: Handler = async (event) => {
         // Handle GET request
         return {
             statusCode: 200,
-            body: 'API is working!',
+            body: JSON.stringify({ message: 'API is working!' }), // Return JSON response
         };
     } else if (event.httpMethod === 'POST') {
         // Handle POST request
         try {
             const fields = await parseMultipartForm(event);
 
-            if (!fields) {
+            if (!fields || !fields.audio) {
                 throw new Error('Unable to parse audio');
             }
 
@@ -59,19 +59,19 @@ export const handler: Handler = async (event) => {
 
             return {
                 statusCode: 200,
-                body: 'Audio processed successfully!',
+                body: JSON.stringify({ message: 'Audio processed successfully!' }), // Return JSON response
             };
         } catch (error) {
             return {
                 statusCode: 400,
-                body: error.toString(),
+                body: JSON.stringify({ error: error.message }), // Return JSON response
             };
         }
     } else {
         // Handle unsupported methods
         return {
             statusCode: 405,
-            body: 'Method Not Allowed',
+            body: JSON.stringify({ error: 'Method Not Allowed' }), // Return JSON response
         };
     }
 };

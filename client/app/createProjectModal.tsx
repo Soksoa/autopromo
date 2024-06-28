@@ -26,6 +26,8 @@ export default function CreateProjectScreen() {
       const audioUri = song.assets[0].uri
       const audioMimeType = song.assets[0].mimeType
 
+      
+
       uploadAudio(audioUri, audioName, audioMimeType)
     
     } catch (error) {

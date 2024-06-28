@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8888/.netlify/functions/upload'; // Adjust the URL based on your local Netlify Dev server or production URL
+const apiUrl = 'https://wondrous-selkie-3d1dbf.netlify.app/.netlify/functions/api'; // Adjust the URL based on your local Netlify Dev server or production URL
 
 // Example function to upload audio file
 export const uploadAudio = async (fileUri, filename, mimeType) => {

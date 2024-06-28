@@ -9,7 +9,7 @@ export const testApi = async () => {
         const endTime = new Date();
         const elapsedTime = endTime - startTime;
 
-        console.log(`[${endTime.toISOString()}] API Test Response (Status ${response.status}):`, response.data.messages);
+        console.log(`[${endTime.toISOString()}] API Test Response (Status ${response.status}):`, response.data);
         console.log(`[${endTime.toISOString()}] API Test completed in ${elapsedTime}ms`);
         
         return true; // API is reachable
