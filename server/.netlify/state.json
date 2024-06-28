@@ -1,3 +1,20 @@
 {
-	"siteId": "51e4617e-8726-4e0d-93ce-192298199572"
+	"siteId": "51e4617e-8726-4e0d-93ce-192298199572",
+	"geolocation": {
+		"data": {
+			"city": "Madrid",
+			"country": {
+				"code": "ES",
+				"name": "Spain"
+			},
+			"subdivision": {
+				"code": "MD",
+				"name": "Madrid"
+			},
+			"timezone": "Europe/Madrid",
+			"latitude": 40.4942,
+			"longitude": -3.6832
+		},
+		"timestamp": 1719570739822
+	}
 }

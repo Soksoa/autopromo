@@ -3,8 +3,8 @@ import {Text, View} from '@/components/Themed'
 import { StyleSheet, TextInput, Button} from 'react-native';
 import PagerView from 'react-native-pager-view'
 import { createProject } from '@/utils/createProject';
-import {detectBpm} from '@/utils/detectBpm'
 import * as DocumentPicker from 'expo-document-picker'
+import {uploadAudio} from '@/utils/uploadAudio'
 
 
 export default function CreateProjectScreen() {
@@ -21,11 +21,13 @@ export default function CreateProjectScreen() {
 
     try {
       const song = await DocumentPicker.getDocumentAsync(options);
-    
-      console.log(song.assets[0].uri)
 
-      detectBpm(song.assets[0].uri)
-      
+      const audioName = song.assets[0].name
+      const audioUri = song.assets[0].uri
+      const audioMimeType = song.assets[0].mimeType
+
+      uploadAudio(audioUri, audioName, audioMimeType)
+    
     } catch (error) {
       console.error("Error picking document:", error);
     }

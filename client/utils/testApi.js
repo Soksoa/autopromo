@@ -5,11 +5,11 @@ export const testApi = async () => {
     console.log(`[${startTime.toISOString()}] Testing API connectivity...`);
 
     try {
-        const response = await axios.get('https://wondrous-selkie-3d1dbf.netlify.app/.netlify/functions/api/test');
+        const response = await axios.get('https://wondrous-selkie-3d1dbf.netlify.app/.netlify/functions/api');
         const endTime = new Date();
         const elapsedTime = endTime - startTime;
 
-        console.log(`[${endTime.toISOString()}] API Test Response (Status ${response.status}):`, response.data.message);
+        console.log(`[${endTime.toISOString()}] API Test Response (Status ${response.status}):`, response.data.messages);
         console.log(`[${endTime.toISOString()}] API Test completed in ${elapsedTime}ms`);
         
         return true; // API is reachable
