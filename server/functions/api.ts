@@ -56,7 +56,7 @@ export const handler: Handler = async (event) => {
             console.log('fields is: ', fields);
             console.log('audio is: ', fields.audio);
 
-            // Process audio data here...
+            console.log('audio is: ', fields.file[0].content);
 
             return {
                 statusCode: 200,
