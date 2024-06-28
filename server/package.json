@@ -16,7 +16,8 @@
     "express": "^4.19.2",
     "netlify-cli": "^17.23.1",
     "netlify-lambda": "^2.0.16",
-    "serverless-http": "^3.2.0"
+    "serverless-http": "^3.2.0",
+    "tempo": "^0.2.7"
   },
   "devDependencies": {
     "@types/busboy": "^1.5.4",
