@@ -1,6 +1,5 @@
 import busboy from 'busboy';
 import { Handler } from '@netlify/functions';
-import tempo from 'tempo';
 
 type Fields = {
     audio: {
@@ -37,12 +36,6 @@ function parseMultipartForm(event): Promise<Fields> {
     });
 }
 
-async function detectBPM(audioBuffer: Buffer): Promise<number> {
-    const audioData = new Uint8Array(audioBuffer);
-    const detectedBPM = await tempo(audioData);
-    return detectedBPM;
-}
-
 export const handler: Handler = async (event) => {
     if (event.httpMethod === 'GET') {
         // Handle GET request
@@ -59,14 +52,14 @@ export const handler: Handler = async (event) => {
                 throw new Error('Unable to parse audio');
             }
 
-            const audioBuffer = fields.audio[0].content; // Assuming only one audio file is uploaded
+            console.log('fields is: ', fields);
+            console.log('audio is: ', fields.audio);
 
-            // Detect BPM
-            const bpm = await detectBPM(audioBuffer);
+            // Process audio data here...
 
             return {
                 statusCode: 200,
-                body: JSON.stringify({ bpm }), // Return detected BPM
+                body: JSON.stringify({ message: 'Audio processed successfully!' }), // Return JSON response
             };
         } catch (error) {
             return {
