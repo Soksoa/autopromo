@@ -3,21 +3,21 @@ import { StyleSheet } from "react-native";
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
 
-export default function TabOneScreen() {
+export default function ProjectsTabScreen() {
   return (
     <View style={styles.container}>
       <Text
         style={styles.title}
-        className=" flex items-center justify-center scale-[3.0]"
+        className="text-purple-500 text-sm font-extrabold"
       >
-        NativeWind + Expo + Router + TS
+        Projects
       </Text>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      <EditScreenInfo path="app/(tabs)/two.tsx" />
     </View>
   );
 }

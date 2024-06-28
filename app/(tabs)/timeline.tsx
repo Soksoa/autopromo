@@ -3,14 +3,14 @@ import { StyleSheet } from "react-native";
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
 
-export default function TabTwoScreen() {
+export default function TimelineTabScreen() {
   return (
     <View style={styles.container}>
       <Text
         style={styles.title}
         className="text-purple-500 text-sm font-extrabold"
       >
-        Created By Samuel Wyndham @ Sign365
+        Timeline
       </Text>
       <View
         style={styles.separator}
