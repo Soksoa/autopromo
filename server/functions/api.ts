@@ -54,9 +54,20 @@ export const handler: Handler = async (event) => {
             }
 
             console.log('fields is: ', fields);
-            console.log('audio is: ', fields.audio);
 
-            console.log('audio is: ', fields.file[0].content);
+            const buffer = fields.file[0].content
+
+            analyze(buffer).then((tempo) => {
+
+                console.log(tempo)
+
+            }).catch((err) => {
+
+                console.error(err)
+
+            });
+
+            
 
             return {
                 statusCode: 200,
