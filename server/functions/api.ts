@@ -17,41 +17,23 @@ function parseMultipartForm(event): Promise<Fields> {
 
         bb.on('file', (name, file, info) => {
             const { filename, mimeType } = info;
-            let buffer = Buffer.alloc(0);
-            console.log(`Receiving file: ${filename}, MIME type: ${mimeType}`);
 
             file.on('data', (data) => {
-                console.log(`File data chunk received, size: ${data.length}`);
-                buffer = Buffer.concat([buffer, data]);
-            });
+                if (!fields[name]) fields[name] = [];
 
-            file.on('end', () => {
-                console.log(`File upload complete, total size: ${buffer.length}`);
-                fields.audio.push({
+                fields[name].push({
                     filename,
                     type: mimeType,
-                    content: buffer,
+                    content: data,
                 });
             });
         });
 
         bb.on('close', () => {
-            console.log('Form parsing complete.');
             resolve(fields);
         });
 
         bb.end(Buffer.from(event.body, 'base64'));
-    });
-}
-
-function bufferToAudioBuffer(audioContext, buffer) {
-    return new Promise((resolve, reject) => {
-        audioContext.decodeAudioData(buffer, (audioBuffer) => {
-            resolve(audioBuffer);
-        }, (error) => {
-            console.error('Error decoding audio data:', error);
-            reject(error);
-        });
     });
 }
 
@@ -65,36 +47,22 @@ export const handler: Handler = async (event) => {
     } else if (event.httpMethod === 'POST') {
         // Handle POST request
         try {
-            console.log('Handling POST request.');
             const fields = await parseMultipartForm(event);
 
             if (!fields || !fields.audio) {
                 throw new Error('Unable to parse audio');
             }
 
-            console.log('Parsed fields:', fields);
+            console.log('fields is: ', fields);
+            console.log('audio is: ', fields.audio);
 
-            const buffer = fields.audio[0].content;
-            console.log('Buffer length:', buffer.length);
-
-            const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
-            console.log('Converted to ArrayBuffer, length:', arrayBuffer.byteLength);
-
-            const audioContext = new (globalThis.AudioContext || globalThis.webkitAudioContext)();
-            const audioBuffer = await bufferToAudioBuffer(audioContext, arrayBuffer);
-
-            console.log('AudioBuffer:', audioBuffer);
-
-            const tempo = await analyze(audioBuffer.getChannelData(0)); // Get channel data for tempo analysis
-
-            console.log('Tempo:', tempo);
+            console.log('buffer is', fields.file.content)
 
             return {
                 statusCode: 200,
-                body: JSON.stringify({ message: 'Audio processed successfully!', tempo }), // Return JSON response
+                body: JSON.stringify({ message: 'Audio processed successfully!' }), // Return JSON response
             };
         } catch (error) {
-            console.error('Error processing audio:', error);
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: error.message }), // Return JSON response
